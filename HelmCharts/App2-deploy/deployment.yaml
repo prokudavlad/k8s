@@ -1,0 +1,21 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: my-web2-deployment
+  labels:
+    app : my-k8s2-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: ukr2
+  template:
+    metadata:
+      labels:
+        project: ukr2   # Service will look for those PODS Labels!!!
+    spec:
+      containers:
+        - name : ukr2-web
+          image: vladislavprokuda/k8sphp1:latest
+          ports:
+            - containerPort: 80

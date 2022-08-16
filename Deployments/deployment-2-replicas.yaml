@@ -1,0 +1,23 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: my-web-deployment-replicas
+  labels:
+    app  : my-k8s-application
+    env  : prod
+    owner: VladislavProkuda
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: peace
+  template:
+    metadata:
+      labels:
+        project: peace
+    spec:
+      containers:
+        - name : peace-web
+          image: vladislavprokuda/k8sphp1:latest
+          ports:
+            - containerPort: 80
